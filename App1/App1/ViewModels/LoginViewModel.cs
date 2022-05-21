@@ -1,25 +1,50 @@
 using System.Threading.Tasks;
+using System.Windows.Input;
 using App1.Interfaces;
+using Xamarin.Forms;
 
 namespace App1.ViewModels
 {
-    public class LoginViewModel
+    public class LoginViewModel : BindableObject
     {
-        ILoginService _loginService;
+        private readonly ILoginService _loginService;
         IloggerService _loggerService;
+
+        public ICommand Login { get; set; }
         
-        public LoginViewModel(ILoginService loginService , IloggerService loggerService)
-      
+        private string _username;
+        public string Username
         {
-            _loginService = loginService;
-            _loggerService = loggerService;
+            get => _username;
+            set
+            {
+                _username = value;
+                OnPropertyChanged();
+            }
         }
         
-        public async Task Login(string username, string password)
+        private string _password;
+        public string Password
         {
-            await _loginService.LoginAsync(username, password);
+            get { return _password; }
+            set
+            {
+                _password = value;
+                OnPropertyChanged();
+            }
         }
         
+        public LoginViewModel()
+        {
+            _loginService = DependencyService.Get<ILoginService>();
+            _loggerService = DependencyService.Get<IloggerService>();
+            Login = new Command(async () => await LoginAsync(Username, Password));
+        }
+        
+        private async Task LoginAsync(string username, string password)
+        {
+            await _loginService.LoginAsync(Username, Password);
+        }
         
     }
     

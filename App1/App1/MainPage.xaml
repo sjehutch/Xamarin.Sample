@@ -1,8 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:App1"
+             xmlns:viewModels="clr-namespace:App1.ViewModels;assembly=App1"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:DataType="viewModels:LoginViewModel"
              x:Class="App1.MainPage">
+    <ContentPage.BindingContext>
+        <viewModels:LoginViewModel></viewModels:LoginViewModel>
+    </ContentPage.BindingContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
@@ -13,13 +18,15 @@
         <Label Text="Welcome to Xamarin.Forms!" 
            HorizontalOptions="Center"
            VerticalOptions="CenterAndExpand"  />
+        <Entry  Text="{Binding Username}" TextColor="Black"></Entry>
+        <Entry Text="{Binding Password}" TextColor="Black"></Entry>
+        <Button Text="Submit" Command="{Binding Login}">
+          
+        </Button>
         </StackLayout>
         <StackLayout Grid.Row="1" Padding="10,0,10,0">
-        <Frame Opacity="6.0" HasShadow="True"  >
-            <Image Source="https://youmatter.world/app/uploads/sites/2/2020/03/stay-home-healthy-1.jpg" Aspect="AspectFill"
-                   VerticalOptions="FillAndExpand"
-                   HorizontalOptions="FillAndExpand"></Image>
-        </Frame>
+      
+        
     </StackLayout>
     </Grid>
 
