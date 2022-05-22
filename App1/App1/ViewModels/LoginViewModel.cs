@@ -26,7 +26,7 @@ namespace App1.ViewModels
         private string _password;
         public string Password
         {
-            get { return _password; }
+            get => _password;
             set
             {
                 _password = value;
