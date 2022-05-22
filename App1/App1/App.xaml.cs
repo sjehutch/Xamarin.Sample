@@ -15,7 +15,7 @@ namespace App1
             InitializeComponent();
             
             DependencyService.Register<ILoginService,LoginService>();
-            DependencyService.Register<IloggerService,LoggerService>();
+            DependencyService.Register<ILoggerService,LoggerService>();
 
             MainPage = new MainPage();
         }

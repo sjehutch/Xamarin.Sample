@@ -4,7 +4,7 @@ using App1.Interfaces;
 
 namespace App1.Services
 {
-    public class LoggerService : IloggerService
+    public class LoggerService : ILoggerService
     {
         public Task Log(string message)
         {

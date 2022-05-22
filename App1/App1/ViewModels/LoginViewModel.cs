@@ -8,7 +8,7 @@ namespace App1.ViewModels
     public class LoginViewModel : BindableObject
     {
         private readonly ILoginService _loginService;
-        IloggerService _loggerService;
+        ILoggerService _loggerService;
 
         public ICommand Login { get; set; }
         
@@ -37,7 +37,7 @@ namespace App1.ViewModels
         public LoginViewModel()
         {
             _loginService = DependencyService.Get<ILoginService>();
-            _loggerService = DependencyService.Get<IloggerService>();
+            _loggerService = DependencyService.Get<ILoggerService>();
             Login = new Command(async () => await LoginAsync(Username, Password));
         }
         

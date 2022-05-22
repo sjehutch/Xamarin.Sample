@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace App1.Interfaces
 {
-    public interface IloggerService
+    public interface ILoggerService
     {
         Task Log(string message);
         Task Log(Exception ex);
