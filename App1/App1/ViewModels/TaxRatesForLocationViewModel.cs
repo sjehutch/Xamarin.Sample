@@ -12,7 +12,7 @@ namespace App1.ViewModels
         
         public ICommand GetTaxRatesCommand { get; private set; }
         
-        
+        // Generally I would use MVVM helpers or fody to bind these properties, but for this example I'm just going to use the properties directly
        private bool _taxIsVisible;
         public bool TaxIsVisible
         {
