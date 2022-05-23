@@ -11,9 +11,9 @@
     
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Color x:Key="ButtonColor">#7c21f3</Color>
+            <Color x:Key="ButtonColor">#3371FF</Color>
             <Color x:Key="TextColor">#FFFFFF</Color>
-            <Color x:Key="LabelColor">#B5B4B5</Color>
+            <Color x:Key="LabelColor">#ABACB6</Color>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -27,8 +27,8 @@
         <StackLayout Margin="20">
             <Entry Text="{Binding ZipCode}"
                    BackgroundColor="White"
-                   Placeholder="Zip Code*"
-                   PlaceholderColor="LightPink"
+                   Placeholder="Enter a Zip Code"
+                   PlaceholderColor="{StaticResource LabelColor}"
                    TextColor="Black"
                    Keyboard="Numeric"
                    Margin="0,0,0,10"/>
@@ -48,20 +48,15 @@
                HorizontalOptions="Center">
             <ActivityIndicator Color="{StaticResource TextColor}" IsRunning="True"/>
         </Frame>
-        <StackLayout IsVisible="{Binding TaxIsVisible}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0,0,10,0">
-            <Label
-                Text="Tax Information:"
-                Padding="20,20,0,10"
-                FontSize="Large"
-                HorizontalTextAlignment="Start"
-                TextColor="{StaticResource TextColor}"/>
+        <StackLayout IsVisible="{Binding TaxIsVisible}"  Orientation="Horizontal" HorizontalOptions="StartAndExpand" Margin="10,0,0,0">
+           
             <Label Text="CombinedRate tax for zip:"
                    FontSize="Medium"
-                   HorizontalTextAlignment="Start"
+                   HorizontalOptions="StartAndExpand"
                    Padding="10,0,0,0"
                    TextColor="{StaticResource LabelColor}"/>
             <Label Text="{Binding TaxRate}"
-                   HorizontalOptions="EndAndExpand"
+                   HorizontalOptions="CenterAndExpand"
                    TextColor="Black"
                    FontSize="Medium"
                    Padding="0,0,10,0"
