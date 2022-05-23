@@ -14,17 +14,17 @@ namespace App1.Services
             return await GetTaxRate(zipCode);
         }
 
-        private async Task<decimal> GetTaxRate(string zipCode)
+        private static async Task<decimal> GetTaxRate(string zipCode)
         {
             decimal taxRateResult = 0;
+            // Normally I would have httpclient and httpresponsemessage as a dependency, but for this project I am using the static methods
             var client = new HttpClient();
-            client.DefaultRequestHeaders.Add("ApiKey", Settings.TaxJarKey);
+            client.DefaultRequestHeaders.Add("Authorization","Token token="+Settings.TaxJarKey);
             var response = await client.GetAsync($"{Settings.TaxJarApiBase}rates/{zipCode}");
             if (!response.IsSuccessStatusCode) return taxRateResult;
             var content = await response.Content.ReadAsStringAsync();
             var taxRateResponse = JsonConvert.DeserializeObject<TaxRateResponse>(content);
-            if (taxRateResponse != null) taxRateResult = taxRateResponse.StateRate;
-
+            if (taxRateResponse is { Rate: { } }) taxRateResult = taxRateResponse.Rate.CombinedRate;
             return taxRateResult;
         }
         

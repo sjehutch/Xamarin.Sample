@@ -16,6 +16,7 @@ namespace App1
             
             DependencyService.Register<ILoginService,LoginService>();
             DependencyService.Register<ILoggerService,LoggerService>();
+            DependencyService.Register<ITaxCalculatorService,TaxCalculatorService>();
 
             MainPage = new MainPage();
         }

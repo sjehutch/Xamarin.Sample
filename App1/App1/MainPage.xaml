@@ -3,31 +3,70 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:App1.ViewModels;assembly=App1"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             x:DataType="viewModels:LoginViewModel"
+             x:DataType="viewModels:TaxRatesForLocationViewModel"
              x:Class="App1.MainPage">
     <ContentPage.BindingContext>
-        <viewModels:LoginViewModel></viewModels:LoginViewModel>
+        <viewModels:TaxRatesForLocationViewModel></viewModels:TaxRatesForLocationViewModel>
     </ContentPage.BindingContext>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-        </Grid.RowDefinitions>
-        <StackLayout Grid.Row="0">
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand"  />
-        <Entry  Text="{Binding Username}" TextColor="Black"></Entry>
-        <Entry Text="{Binding Password}" TextColor="Black"></Entry>
-        <Button Text="Submit" Command="{Binding Login}">
-          
-        </Button>
-        </StackLayout>
-        <StackLayout Grid.Row="1" Padding="10,0,10,0">
-      
-        
-    </StackLayout>
-    </Grid>
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="ButtonColor">#7c21f3</Color>
+            <Color x:Key="TextColor">#FFFFFF</Color>
+            <Color x:Key="LabelColor">#B5B4B5</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+    <StackLayout>
+        <Label
+            Text="Enter Zip Code For Location:"
+            Padding="0,30,0,10"
+            FontSize="Title"
+            HorizontalTextAlignment="Center"
+            TextColor="{StaticResource TextColor}"/>
+        <StackLayout Margin="20">
+            <Entry Text="{Binding ZipCode}"
+                   BackgroundColor="White"
+                   Placeholder="Zip Code*"
+                   PlaceholderColor="LightPink"
+                   TextColor="Black"
+                   Keyboard="Numeric"
+                   Margin="0,0,0,10"/>
 
+            <Button Text="Get Tax Rates"
+                    Command="{Binding GetTaxRatesCommand}"
+                    BackgroundColor="{StaticResource ButtonColor}"
+                    TextColor="{StaticResource TextColor}"
+                    Padding="20"
+                    FontSize="Medium"/>
+            </StackLayout>
+        <Frame IsVisible="{Binding IsBusy}"
+               BackgroundColor="Transparent"
+               WidthRequest="50"
+               HeightRequest="50"
+               VerticalOptions="Center"
+               HorizontalOptions="Center">
+            <ActivityIndicator Color="{StaticResource TextColor}" IsRunning="True"/>
+        </Frame>
+        <StackLayout IsVisible="{Binding TaxIsVisible}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0,0,10,0">
+            <Label
+                Text="Tax Information:"
+                Padding="20,20,0,10"
+                FontSize="Large"
+                HorizontalTextAlignment="Start"
+                TextColor="{StaticResource TextColor}"/>
+            <Label Text="CombinedRate tax for zip:"
+                   FontSize="Medium"
+                   HorizontalTextAlignment="Start"
+                   Padding="10,0,0,0"
+                   TextColor="{StaticResource LabelColor}"/>
+            <Label Text="{Binding TaxRate}"
+                   HorizontalOptions="EndAndExpand"
+                   TextColor="Black"
+                   FontSize="Medium"
+                   Padding="0,0,10,0"
+                   />
+    </StackLayout>
+        </StackLayout>
+        </ContentPage.Content>
 </ContentPage>
