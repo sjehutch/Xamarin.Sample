@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace App1.ViewModels
 {
-    public class TaxRatesForLocationViewModel : ViewModelBase
+    public class TaxCalculateByZipCodePageViewModel : ViewModelBase
     {
         private readonly ITaxCalculatorService _taxCalculatorService;
         private readonly ILoggerService _logger;
@@ -58,14 +58,17 @@ namespace App1.ViewModels
         }
        
         
-        public TaxRatesForLocationViewModel() 
+        public TaxCalculateByZipCodePageViewModel() 
         {
             _taxCalculatorService = DependencyService.Get<ITaxCalculatorService>();
+            _logger = DependencyService.Get<ILoggerService>();
             GetTaxRatesCommand  = new Command(async () => await GetTaxRates(ZipCode));
         }
         
         private async Task GetTaxRates(string zipCode)
         {
+            await _logger.Log("Getting tax rates for zip code: " + zipCode);
+            
             if (!string.IsNullOrEmpty(zipCode))
             {
                 zipCode = ZipCode;
@@ -76,7 +79,5 @@ namespace App1.ViewModels
             IsBusy = false;
             TaxIsVisible = true;
         }
-        
     }
-    
 }

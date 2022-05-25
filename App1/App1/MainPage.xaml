@@ -2,12 +2,27 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:App1.ViewModels;assembly=App1"
+             x:DataType="viewModels:MainPageViewModel"
              x:Class="App1.MainPage">
+    <ContentPage.BindingContext>
+        <viewModels:MainPageViewModel></viewModels:MainPageViewModel>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+            <ResourceDictionary>
+                <Color x:Key="ButtonColor">#3371FF</Color>
+                <Color x:Key="TextColor">#FFFFFF</Color>
+                <Color x:Key="LabelColor">#ABACB6</Color>
+            </ResourceDictionary>
+        </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Hello, world!"
-                   VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="CenterAndExpand" />
+        <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+            <Button Text="Get tax rates by zip code"
+                    BackgroundColor="{StaticResource ButtonColor}"
+                    TextColor="{StaticResource TextColor}"
+                    Padding="20"
+                    FontSize="Medium"
+                    Command="{Binding CalculateByRateCommand}"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -15,5 +15,6 @@ namespace App1.Models.Response
         public decimal CombinedRate { get; set; }
         public bool FreightTaxable { get; set; }
         public TaxRateResponse Rate { get; set; }
+        public TaxRateResponse Tax { get; set; }
     }
 }

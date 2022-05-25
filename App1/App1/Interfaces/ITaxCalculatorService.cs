@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using App1.Models;
+using App1.Models.Request;
 using App1.Models.Response;
 
 namespace App1.Interfaces
@@ -8,6 +9,6 @@ namespace App1.Interfaces
     {
         Task<decimal> CalculateTaxBasedOnZipCode(string zipCode);
         
-        Task<decimal> CalculateTaxBasedOnAddress(NexusAddress address);
+        Task<TaxOrderResponse> CalculateTaxBasedOnOrder(PostOrder order);
     }
 }

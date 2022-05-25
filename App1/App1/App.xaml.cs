@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Http;
 using App1.Interfaces;
 using App1.Services;
 using Xamarin.Forms;
@@ -14,12 +15,13 @@ namespace App1
         {
             InitializeComponent();
             
-            DependencyService.Register<ILoginService,LoginService>();
             DependencyService.Register<ILoggerService,LoggerService>();
             DependencyService.Register<ITaxCalculatorService,TaxCalculatorService>();
-
-            MainPage = new MainPage();
+            DependencyService.Register<HttpClient>();
+            Current.MainPage = new NavigationPage(new MainPage());
         }
+        
+        
 
         protected override void OnStart()
         {

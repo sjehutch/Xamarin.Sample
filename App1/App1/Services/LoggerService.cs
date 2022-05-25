@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using App1.Interfaces;
 
@@ -8,7 +9,8 @@ namespace App1.Services
     {
         public Task Log(string message)
         {
-            throw new NotImplementedException();
+            Debug.WriteLine(message);
+            return Task.CompletedTask;
         }
 
         public Task Log(Exception ex)
